@@ -3,12 +3,26 @@ POST http://localhost:3333/users
 Content-Type: application/json
 
 {
-  "name": "Paulo",
-  "email": "paulo@teste.com"
+  "name": "Fabio",
+  "email": "Fabio@teste.com"
 }
 
 ###
 GET http://localhost:3333/users
 
 ###
-DELETE http://localhost:3333/users/7b0743d3-3b4d-4a35-8d63-5594b378703b
+GET http://localhost:3333/users?search=Paulo
+
+
+###
+PUT http://localhost:3333/users/a6b7cb6c-0eff-4581-b0ef-f270ecabaf0d
+Content-Type: application/json
+
+{
+  "name": "Elisa",
+  "email": "Elisa@teste.com"
+}
+
+
+###
+DELETE http://localhost:3333/users/e1c2066c-07ca-460b-9bb9-2178c90c288c
