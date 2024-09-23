@@ -11,4 +11,4 @@ Content-Type: application/json
 GET http://localhost:3333/users
 
 ###
-DELETE http://localhost:3333/users/1
+DELETE http://localhost:3333/users/7b0743d3-3b4d-4a35-8d63-5594b378703b
