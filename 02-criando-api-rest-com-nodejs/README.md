@@ -2,6 +2,8 @@
 
 ## Migrations
 
+Ferramenta usada [knex](https://knexjs.org/guide/)
+
 ### Criar
 
 ```shell

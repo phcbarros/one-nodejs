@@ -145,3 +145,5 @@ dist
 
 
 db/app.db
+
+.env
