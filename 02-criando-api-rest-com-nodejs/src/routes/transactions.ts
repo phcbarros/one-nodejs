@@ -2,27 +2,43 @@ import {FastifyInstance} from 'fastify'
 import {randomUUID} from 'node:crypto'
 import {z} from 'zod'
 import {knex} from '../database'
+import {checkSessionIdExists} from '../../middlewares/check-session-id-exists'
 
 const COOKIE_MAX_AGE_SEVEN_DAYS = 60 * 60 * 24 * 7
 
 export async function transactionsRoutes(app: FastifyInstance) {
-  app.get('/', async () => {
-    const transactions = await knex('transactions').select('*')
+  app.get(
+    '/',
+    {
+      preHandler: [checkSessionIdExists],
+    },
+    async (request) => {
+      const sessionId = request.cookies.sessionId
+      console.log(sessionId)
 
-    return {
-      transactions,
-    }
-  })
+      const transactions = await knex('transactions')
+        .where('session_id', sessionId)
+        .select('*')
 
-  app.get('/:id', async (request) => {
+      return {
+        transactions,
+      }
+    },
+  )
+
+  app.get('/:id', {preHandler: [checkSessionIdExists]}, async (request) => {
+    const sessionId = request.cookies.sessionId
+
     const getTransactionParamsSchema = z.object({
       id: z.string().uuid(),
     })
 
     const {id} = getTransactionParamsSchema.parse(request.params)
     const transaction = await knex('transactions')
-      .select('*')
-      .where({id})
+      .where({
+        session_id: sessionId,
+        id,
+      })
       .first()
 
     return {
@@ -30,8 +46,11 @@ export async function transactionsRoutes(app: FastifyInstance) {
     }
   })
 
-  app.get('/summary', async () => {
+  app.get('/summary', {preHandler: [checkSessionIdExists]}, async (request) => {
+    const sessionId = request.cookies.sessionId
+
     const summary = await knex('transactions')
+      .where('session_id', sessionId)
       .sum('amount', {as: 'amount'})
       .first()
 
@@ -60,10 +79,13 @@ export async function transactionsRoutes(app: FastifyInstance) {
       })
     }
 
+    console.log(sessionId)
+
     await knex('transactions').insert({
       id: randomUUID(),
       title,
       amount: type === 'credit' ? amount : amount * -1,
+      session_id: sessionId,
     })
 
     return reply.status(201).send()
