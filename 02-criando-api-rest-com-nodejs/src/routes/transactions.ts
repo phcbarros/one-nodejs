@@ -6,6 +6,13 @@ import {checkSessionIdExists} from '../../middlewares/check-session-id-exists'
 
 const COOKIE_MAX_AGE_SEVEN_DAYS = 60 * 60 * 24 * 7
 
+// Unitários: unidade da sua aplicação
+// Integração: comunicação entre os componentes da sua aplicação
+// e2e - ponta a ponta: simulam usuário operando a aplicação
+
+// frontend: abre a página de login, digite o texto paulo.barros@teste.com no campo email e clique no botão
+// backend: chamadas HTTP, websockets
+
 export async function transactionsRoutes(app: FastifyInstance) {
   app.get(
     '/',
