@@ -145,5 +145,7 @@ dist
 
 
 db/app.db
+db/test.db
 
 .env
+.env.test

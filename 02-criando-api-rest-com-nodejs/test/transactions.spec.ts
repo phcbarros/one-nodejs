@@ -1,9 +1,8 @@
-import {describe} from 'node:test'
+import {beforeEach, describe} from 'node:test'
 import {app} from '../src/app'
 import request from 'supertest'
 import {it, beforeAll, afterAll, expect} from 'vitest'
-import {a} from 'vitest/dist/chunks/suite.B2jumIFP'
-import {object} from 'zod'
+import {execSync} from 'node:child_process'
 
 describe('Transactions routes', () => {
   beforeAll(async () => {
@@ -12,6 +11,11 @@ describe('Transactions routes', () => {
 
   afterAll(async () => {
     await app.close() // remove a aplicação da memória
+  })
+
+  beforeEach(() => {
+    execSync('npm run knex migrate:rollback --all')
+    execSync('npm run knex migrate:latest')
   })
 
   it('should be able to create a new transaction', async () => {
@@ -27,6 +31,7 @@ describe('Transactions routes', () => {
   })
 
   // jamais criar um teste que dependa de outro teste
+  // os testes e2e precisam ser abster de qualquer contexto
   it('should be able to list all transactions', async () => {
     // criar uma transação
     const createTransactionResponse = await request
