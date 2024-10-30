@@ -57,4 +57,75 @@ describe('Transactions routes', () => {
       }),
     ])
   })
+
+  // o teste precisa se adaptar ao código e não o contrário
+  it('should be able to get a specific transaction', async () => {
+    // criar uma transação
+    const createTransactionResponse = await request
+      .agent(app.server)
+      .post('/transactions')
+      .send({
+        title: 'New Transaction 2',
+        type: 'credit',
+        amount: 5000,
+      })
+    const cookies = createTransactionResponse.get('Set-Cookie')
+
+    const listTransactionsResponse = await request
+      .agent(app.server)
+      .get('/transactions')
+      .set('Cookie', cookies!)
+
+    const transactionId = listTransactionsResponse.body.transactions[0].id
+
+    const getTransactionResponse = await request
+      .agent(app.server)
+      .get(`/transactions/${transactionId}`)
+      .set('Cookie', cookies!)
+      .expect(200)
+
+    expect(getTransactionResponse.body.transaction).toEqual(
+      expect.objectContaining({
+        title: 'New Transaction 2',
+        amount: 5000,
+      }),
+    )
+  })
+
+  it('should be able to get the summary', async () => {
+    // arrange
+    const createTransactionResponse = await request
+      .agent(app.server)
+      .post('/transactions')
+      .send({
+        title: 'New Transaction 1',
+        type: 'credit',
+        amount: 5000,
+      })
+    const cookies = createTransactionResponse.get('Set-Cookie')
+
+    await request
+      .agent(app.server)
+      .post('/transactions')
+      .set('Cookie', cookies!)
+      .send({
+        title: 'New Transaction 2',
+        type: 'debit',
+        amount: 1000,
+      })
+
+    // act
+    const getSummaryResponse = await request
+      .agent(app.server)
+      .get(`/transactions/summary`)
+      .set('Cookie', cookies!)
+      .expect(200)
+
+    // assert
+    expect(getSummaryResponse.body.summary).toEqual(
+      expect.objectContaining({
+        amount: 4000,
+      }),
+    )
+  })
 })
