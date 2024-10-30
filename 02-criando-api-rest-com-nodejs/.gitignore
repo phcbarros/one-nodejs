@@ -82,6 +82,7 @@ web_modules/
 .env.test.local
 .env.production.local
 .env.local
+.env.test
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -94,6 +95,7 @@ out
 # Nuxt.js build / generate output
 .nuxt
 dist
+build
 
 # Gatsby files
 .cache/
@@ -144,8 +146,7 @@ dist
 # End of https://www.toptal.com/developers/gitignore/api/node
 
 
-db/app.db
-db/test.db
+# database
+db/*.db
 
-.env
-.env.test
+
