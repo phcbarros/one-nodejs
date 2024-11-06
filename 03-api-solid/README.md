@@ -34,3 +34,12 @@ Gympass style app.
 ## Emoji mac
 
 command + control + space
+
+## Prisma
+
+```shell
+npx prisma init
+
+# criar de forma automática a tipagem do schema
+npx prisma generate
+```
