@@ -42,4 +42,21 @@ npx prisma init
 
 # criar de forma automática a tipagem do schema
 npx prisma generate
+
+# executar migration
+npx prisma migrate dev
+
+npx prisma studio
+```
+
+## Banco
+
+```shell
+docker run --name api-solid-pg -e POSTGRESQL_USERNAME=docker -e POSTGRESQL_PASSWORD=docker -e POSTGRESQL_DATABASE=apisolid -p 5432:5432 bitnami/postgresql
+
+docker start api-solid-pg
+
+docker stop api-solid-pg
+
+docker logs api-solid-pg -f
 ```
