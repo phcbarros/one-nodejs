@@ -1,3 +1,4 @@
+import {UsersRepository} from '@/repositories/users.repository'
 import {hash} from 'bcryptjs'
 
 interface RegisterUseCaseRequest {
@@ -9,7 +10,7 @@ interface RegisterUseCaseRequest {
 // Dependency inversion principle
 
 export class RegisterUseCase {
-  constructor(private readonly usersRepository: any) {}
+  constructor(private readonly usersRepository: UsersRepository) {}
 
   async execute({name, email, password}: RegisterUseCaseRequest) {
     const userWithSameEmail = await this.usersRepository.findByEmail(email)
