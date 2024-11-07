@@ -59,4 +59,12 @@ docker start api-solid-pg
 docker stop api-solid-pg
 
 docker logs api-solid-pg -f
+
+# compose
+docker compose up -d
+
+docker compose stop
+
+# deleta o container
+docker compose down --remove-orphans
 ```
