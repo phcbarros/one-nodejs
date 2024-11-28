@@ -1,4 +1,4 @@
-import {it, expect, describe, vi} from 'vitest'
+import {it, expect, describe, beforeEach} from 'vitest'
 import {RegisterUseCase} from './register'
 import {compare} from 'bcryptjs'
 import {InMemoryUsersRepository} from '@/repositories/in-memory/users.repository'
@@ -6,12 +6,17 @@ import {UserAlreadyExistsError} from './errors/user-already-exists.error'
 
 // Unit Testing
 
-describe('RegisterUseCase', () => {
-  it('should  be able to register', async () => {
-    const usersRepository = new InMemoryUsersRepository()
-    const registerUseCase = new RegisterUseCase(usersRepository)
+let usersRepository: InMemoryUsersRepository
+let sut: RegisterUseCase
 
-    const {user} = await registerUseCase.execute({
+describe('RegisterUseCase', () => {
+  beforeEach(() => {
+    usersRepository = new InMemoryUsersRepository()
+    sut = new RegisterUseCase(usersRepository)
+  })
+
+  it('should  be able to register', async () => {
+    const {user} = await sut.execute({
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
@@ -21,10 +26,7 @@ describe('RegisterUseCase', () => {
   })
 
   it('should hash user password upon registration', async () => {
-    const usersRepository = new InMemoryUsersRepository()
-    const registerUseCase = new RegisterUseCase(usersRepository)
-
-    const {user} = await registerUseCase.execute({
+    const {user} = await sut.execute({
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
@@ -39,17 +41,14 @@ describe('RegisterUseCase', () => {
   })
 
   it('should not be able to register with same email twice', async () => {
-    const usersRepository = new InMemoryUsersRepository()
-    const registerUseCase = new RegisterUseCase(usersRepository)
-
-    await registerUseCase.execute({
+    await sut.execute({
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
     })
 
     await expect(() =>
-      registerUseCase.execute({
+      sut.execute({
         name: 'John Doe',
         email: 'johndoe@example.com',
         password: '123456',
