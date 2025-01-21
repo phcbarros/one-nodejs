@@ -1,8 +1,6 @@
 import {describe, expect, it, beforeEach} from 'vitest'
-import {AuthenticateUseCase} from './authenticate'
 import {InMemoryUsersRepository} from '@/repositories/in-memory/users.repository'
 import {hash} from 'bcryptjs'
-import {InvalidCredentialsError} from './errors/invalid-credentials.error'
 import {GetUserProfileUseCase} from './get-user-profile'
 import {ResourceNotFoundError} from './errors/resource-not-found.error'
 
