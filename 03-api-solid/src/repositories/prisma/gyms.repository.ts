@@ -1,5 +1,5 @@
 import {prisma} from '@/lib/prisma'
-import {Gym} from '@prisma/client'
+import {Gym, Prisma} from '@prisma/client'
 import {GymsRepository} from '../gyms.repository'
 
 export class PrismaGymsRepository implements GymsRepository {
@@ -11,5 +11,9 @@ export class PrismaGymsRepository implements GymsRepository {
     })
 
     return gym
+  }
+
+  async create(data: Prisma.GymCreateInput): Promise<Gym> {
+    throw new Error('Method not implemented.')
   }
 }
