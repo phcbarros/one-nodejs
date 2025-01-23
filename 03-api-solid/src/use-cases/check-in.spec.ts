@@ -3,6 +3,8 @@ import {it, expect, describe, beforeEach, vi, afterEach} from 'vitest'
 import {CheckInUseCase} from './check-in'
 import {InMemoryGymsRepository} from '@/repositories/in-memory/gyms.repository'
 import {Decimal} from '@prisma/client/runtime/library'
+import {MaxDistanceError} from './errors/max-distance-error'
+import {MaxNumberOfCheckInsError} from './errors/max-number-of-check-ins-error'
 
 // Unit Testing
 
@@ -17,7 +19,7 @@ describe('CheckInUseCase', () => {
 
     sut = new CheckInUseCase(checkInsRepository, gymsRepository)
 
-    gymsRepository.items.push({
+    gymsRepository.create({
       id: 'gym-01',
       title: 'JavaScript Gym',
       description: '',
@@ -60,7 +62,7 @@ describe('CheckInUseCase', () => {
         userLatitude: -27.2092052,
         userLongitude: -49.6401091,
       }),
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(MaxNumberOfCheckInsError)
   })
 
   it('should able to check in twice in different days', async () => {
@@ -100,7 +102,7 @@ describe('CheckInUseCase', () => {
         userLatitude: -27.2092052,
         userLongitude: -49.6401091,
       }),
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(MaxDistanceError)
   })
 
   it('should be able to check in on near gym', async () => {

@@ -3,6 +3,8 @@ import {PrismaCheckInsRepository} from '@/repositories/prisma/check-ins.reposito
 import {CheckIn} from '@prisma/client'
 import {ResourceNotFoundError} from './errors/resource-not-found.error'
 import {getDistanceBetweenCoordinates} from '@/utils/get-distance-between-coordinates'
+import {MaxDistanceError} from './errors/max-distance-error'
+import {MaxNumberOfCheckInsError} from './errors/max-number-of-check-ins-error'
 
 // tipagens de entrada e saída
 
@@ -43,7 +45,7 @@ export class CheckInUseCase {
     const MAX_DISTANCE = 0.1
 
     if (distanceBetweenUserAndGym > MAX_DISTANCE) {
-      throw new Error()
+      throw new MaxDistanceError()
     }
 
     const checkInOnSameDate = await this.checkInsRepository.findByUserIdOnDate(
@@ -52,7 +54,7 @@ export class CheckInUseCase {
     )
 
     if (checkInOnSameDate) {
-      throw new Error()
+      throw new MaxNumberOfCheckInsError()
     }
 
     const checkIn = await this.checkInsRepository.create({
