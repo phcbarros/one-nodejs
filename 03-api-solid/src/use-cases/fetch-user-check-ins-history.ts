@@ -1,4 +1,4 @@
-import {PrismaCheckInsRepository} from '@/repositories/prisma/check-ins.repository'
+import {CheckInsRepository} from '@/repositories/check-ins.repository'
 import {CheckIn} from '@prisma/client'
 
 // tipagens de entrada e saída
@@ -13,7 +13,7 @@ interface FetchUserCheckInsHistoryUseCaseResponse {
 }
 
 export class FetchUserCheckInsHistoryUseCase {
-  constructor(private readonly checkInsRepository: PrismaCheckInsRepository) {}
+  constructor(private readonly checkInsRepository: CheckInsRepository) {}
 
   public async execute({
     userId,
