@@ -20,6 +20,14 @@ export class InMemoryCheckInsRepository implements CheckInsRepository {
     return checkIn
   }
 
+  async findById(id: string): Promise<CheckIn | null> {
+    const checkIn = this.items.find((checkIn) => checkIn.id === id) // find pode retornar undefined
+
+    if (!checkIn) return null
+
+    return checkIn
+  }
+
   async findByUserIdOnDate(
     userId: string,
     date: Date,
@@ -48,5 +56,15 @@ export class InMemoryCheckInsRepository implements CheckInsRepository {
 
   async countByUserId(userId: string): Promise<number> {
     return this.items.filter((checkIn) => checkIn.user_id === userId).length
+  }
+
+  async save(checkIn: CheckIn): Promise<CheckIn> {
+    const checkInIndex = this.items.findIndex((item) => item.id === checkIn.id)
+
+    if (checkInIndex >= 0) {
+      this.items[checkInIndex] = checkIn
+    }
+
+    return checkIn
   }
 }
