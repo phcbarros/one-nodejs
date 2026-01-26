@@ -1,31 +1,77 @@
 import {Prisma, CheckIn} from '@prisma/client'
 import {CheckInsRepository} from '../check-ins.repository'
 import {prisma} from '@/lib/prisma'
+import dayjs from 'dayjs'
 
 export class PrismaCheckInsRepository implements CheckInsRepository {
+  async findById(id: string): Promise<CheckIn | null> {
+    const checkIn = await prisma.checkIn.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    return checkIn
+  }
+
+  async save(data: CheckIn): Promise<CheckIn> {
+    const checkIn = await prisma.checkIn.update({
+      where: {
+        id: data.id,
+      },
+      data: data,
+    })
+
+    return checkIn
+  }
+
   async create(data: Prisma.CheckInUncheckedCreateInput): Promise<CheckIn> {
-    return await prisma.checkIn.create({
+    const checkIn = await prisma.checkIn.create({
       data,
     })
+
+    return checkIn
   }
 
   async findByUserIdOnDate(
     userId: string,
     date: Date,
   ): Promise<CheckIn | null> {
-    return await prisma.checkIn.findFirstOrThrow({
+    const startOfDay = dayjs(date).startOf('date')
+    const endOfDay = dayjs(date).endOf('date')
+
+    const checkIn = await prisma.checkIn.findFirst({
       where: {
         user_id: userId,
-        created_at: date,
+        created_at: {
+          gte: startOfDay.toDate(),
+          lte: endOfDay.toDate(),
+        },
       },
     })
+
+    return checkIn
   }
 
   async findManyByUserId(userId: string, page: number): Promise<CheckIn[]> {
-    throw new Error('Method not implemented.')
+    const checkIns = await prisma.checkIn.findMany({
+      where: {
+        user_id: userId,
+      },
+      skip: (page - 1) * 20,
+      take: 20,
+    })
+
+    return checkIns
   }
 
   async countByUserId(userId: string): Promise<number> {
-    throw new Error('Method not implemented.')
+    const count = await prisma.checkIn.count({
+      where: {
+        user_id: userId,
+      },
+    })
+
+    return count
   }
 }
