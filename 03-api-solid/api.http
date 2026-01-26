@@ -1,4 +1,4 @@
-###
+### Create User
 
 POST http://localhost:3333/users
 Content-Type: application/json
@@ -10,11 +10,14 @@ Content-Type: application/json
 }
 
 
-###
+### Authenticate User
 POST http://localhost:3333/sessions
 Content-Type: application/json
 
 {
   "email": "paulo.barros@teste.com",
-  "password": "1234567"
+  "password": "123456"
 }
+
+### Get User Profile
+GET http://localhost:3333/me

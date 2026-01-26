@@ -1,0 +1,8 @@
+### Authenticate User
+POST http://localhost:3333/sessions
+Content-Type: application/json
+
+{
+  "email": "paulo.barros@teste.com",
+  "password": "123456"
+}

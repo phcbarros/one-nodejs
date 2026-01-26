@@ -1,0 +1,4 @@
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZTlkMDI0MS03NjZmLTQyNmMtOWU2Yi1hYzI1ZGFiMWFlMmYiLCJpYXQiOjE3Njk0NTMzNTh9.vqJxfOF65bjP_8dxza35wMnyUiihUij2gHkslL5G-As
+### Get User Profile
+GET http://localhost:3333/me
+Authorization: Bearer {{TOKEN}}
