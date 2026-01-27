@@ -18,7 +18,7 @@ function generateDatabaseUrl(schema: string) {
 
 export default <Environment>{
   name: 'prisma',
-  transformMode: 'ssr',
+  viteEnvironment: 'ssr',
   async setup() {
     // criar banco de testes
 
