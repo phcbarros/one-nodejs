@@ -1,0 +1,19 @@
+@host = http://localhost:3333
+
+### GET Gyms
+GET {{host}}/gyms/search?q=js&page=1
+
+### GET nearby
+GET {{host}}/gyms/nearby?latitude=-23.55052&longitude=-46.633308
+
+### Create Gym
+POST {{host}}/gyms
+Content-Type: application/json
+
+{
+  "title": "JavaScript Gym",
+  "description": "A gym for JavaScript enthusiasts",
+  "phone": "123-456-7890",
+  "latitude": -23.55052,
+  "longitude": -46.633308
+}
