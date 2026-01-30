@@ -1,0 +1,3 @@
+### Authenticate User
+PATCH http://localhost:3333/token/refresh
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjZmI2OWU4Yy0wOTlhLTRlNjItODE2My01Mzk5MzdhZTRhMzAiLCJpYXQiOjE3Njk4MDIxMzUsImV4cCI6MTc3MDQwNjkzNX0.tE0O_ABrmHjKeuxXPGMCJcN6yDnA3BADGxUWGo1Rsjc; Path=/; HttpOnly; Secure; SameSite=Strict

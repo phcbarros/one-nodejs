@@ -1,8 +1,11 @@
 ### Authenticate User
 POST http://localhost:3333/sessions
 Content-Type: application/json
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjZmI2OWU4Yy0wOTlhLTRlNjItODE2My01Mzk5MzdhZTRhMzAiLCJpYXQiOjE3Njk4MDA0NjAsImV4cCI6MTc3MDQwNTI2MH0.fGJpEw53JhzZAtIWYww1wfvhO0GWYFVEpQIJaPLGPz0; Path=/; HttpOnly; Secure; SameSite=Strict
 
 {
   "email": "paulo.barros@teste.com",
   "password": "123456"
 }
+
+### Refresh Token
