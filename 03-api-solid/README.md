@@ -121,3 +121,11 @@ Header (cabeçalho): Authorization: Bearer JWT
 ### RBAC - Role Based Authorization Control
 
 Controle de autorização com base no cargo do usuário (admin, gestor, etc).
+
+### CI - Continuous integration
+
+Rotinas para integração de código de forma continua que podem validar se o código integrado está atendendo as regras do time
+
+### CD - Continuous Deployment/Delivery
+
+Process de receber um novo código e automaticamente efetuar o Deploy da aplicação
