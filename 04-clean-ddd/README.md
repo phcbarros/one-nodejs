@@ -9,6 +9,7 @@ Design de Software é diferente de Arquitetura de Software
 - Não tem nada a haver com separação de pastas
 - Não tem nada a haver com linguagem de programação
 - Não tem nada a haver com camadas
+- Não tem nada a haver com tabelas no banco de dados
 
 ## Domínio
 
@@ -24,3 +25,13 @@ Design de Software é diferente de Arquitetura de Software
 - Subdomínios (Bounded Contexts)
 - Entidades
 - Casos de uso
+
+## Criando o projeto
+
+```shell
+npm init -y
+
+npm i typescript @types/node -D
+
+npx tsc --init
+```
