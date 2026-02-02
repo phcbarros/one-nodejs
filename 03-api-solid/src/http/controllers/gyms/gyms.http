@@ -9,6 +9,8 @@ GET {{host}}/gyms/nearby?latitude=-23.55052&longitude=-46.633308
 ### Create Gym
 POST {{host}}/gyms
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiIyNzU0NzViMi05YmQ4LTRmNmYtYjJhMy0xNzE4MmM0ODBiNTciLCJpYXQiOjE3NzAwMzY5MjIsImV4cCI6MTc3MDAzNzUyMn0.3LCEpmiGXwHALmXWSAZZk5w8hGm4yP3rpOkngqhKTtA
+Cookie: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiIyNzU0NzViMi05YmQ4LTRmNmYtYjJhMy0xNzE4MmM0ODBiNTciLCJpYXQiOjE3NzAwMzY5MjIsImV4cCI6MTc3MDY0MTcyMn0.Cq_F2-vh35hX0e69rGICupO_SuTmKrkMSp9qImabJ6E; Path=/; HttpOnly; Secure; SameSite=Strict
 
 {
   "title": "JavaScript Gym",
