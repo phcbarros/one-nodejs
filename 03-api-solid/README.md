@@ -117,3 +117,7 @@ Payload: qualquer informação que eu quiser (sub = id do usuário)
 Login => JWT
 JWT => Todas requisições dali para frente
 Header (cabeçalho): Authorization: Bearer JWT
+
+### RBAC - Role Based Authorization Control
+
+Controle de autorização com base no cargo do usuário (admin, gestor, etc).
