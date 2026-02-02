@@ -64,6 +64,7 @@ npx prisma generate
 # executar migration
 npx prisma migrate dev
 
+# executar prisma studio
 npx prisma studio
 ```
 
