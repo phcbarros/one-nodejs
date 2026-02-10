@@ -1,5 +1,5 @@
 import {AnswerQuestionUseCase} from './answer-question'
-import {AnswerRepository} from '../repositories/answers-repository'
+import {AnswerRepository} from '@/domain/forum/application/repositories/answers-repository'
 
 const fakeAnswerRepository: AnswerRepository = {
   create: function (): Promise<void> {
