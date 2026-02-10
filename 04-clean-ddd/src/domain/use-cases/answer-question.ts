@@ -19,7 +19,7 @@ export class AnswerQuestionUseCase {
     const answer = Answer.create({
       authorId: new UniqueEntityID(instructorId),
       questionId: new UniqueEntityID(questionId),
-      content: content,
+      content,
     })
 
     await this.answerRepository.create(answer)
