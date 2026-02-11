@@ -1,4 +1,4 @@
-import {AnswerRepository} from '@/domain/forum/application/repositories/answers-repository'
+import {AnswersRepository} from '@/domain/forum/application/repositories/answers-repository'
 
 export interface DeleteAnswerUseCaseRequest {
   answerId: string
@@ -8,7 +8,7 @@ export interface DeleteAnswerUseCaseRequest {
 export interface DeleteAnswerUseCaseResponse {}
 
 export class DeleteAnswerUseCase {
-  constructor(private answerRepository: AnswerRepository) {}
+  constructor(private answerRepository: AnswersRepository) {}
 
   async execute({
     answerId,
