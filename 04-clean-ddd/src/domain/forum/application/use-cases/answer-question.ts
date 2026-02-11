@@ -19,7 +19,7 @@ export class AnswerQuestionUseCase {
     instructorId,
     questionId,
     content,
-  }: AnswerQuestionUserCaseRequest) {
+  }: AnswerQuestionUserCaseRequest): Promise<AnswerQuestionUseCaseResponse> {
     const answer = Answer.create({
       authorId: new UniqueEntityID(instructorId),
       questionId: new UniqueEntityID(questionId),
