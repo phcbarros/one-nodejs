@@ -1,3 +1,4 @@
+import {PaginationParams} from '@/core/repositories/pagination-params'
 import {AnswersRepository} from '@/domain/forum/application/repositories/answers-repository'
 import {Answer} from '@/domain/forum/enterprise/entities/answer'
 
