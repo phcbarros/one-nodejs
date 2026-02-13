@@ -1,5 +1,4 @@
 import {Entity} from '@/core/entities/entity'
-import {Optional} from '@/core/types/optional'
 import {UniqueEntityID} from '@/core/entities/unique-entity-id'
 
 export interface CommentProps {

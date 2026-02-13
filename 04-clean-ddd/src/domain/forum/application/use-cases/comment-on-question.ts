@@ -1,4 +1,3 @@
-import {Question} from '@/domain/forum/enterprise/entities/question'
 import {QuestionsRepository} from '@/domain/forum/application/repositories/questions-repository'
 import {UniqueEntityID} from '@/core/entities/unique-entity-id'
 import {QuestionComment} from '@/domain/forum/enterprise/entities/question-comment'
