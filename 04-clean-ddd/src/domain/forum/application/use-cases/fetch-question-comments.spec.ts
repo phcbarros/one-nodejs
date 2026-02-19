@@ -24,12 +24,12 @@ describe('Fetch Question Comments', () => {
       makeQuestionComment({questionId: new UniqueEntityID('question-3')}),
     )
 
-    const {questionComments} = await sut.execute({
+    const result = await sut.execute({
       questionId: 'question-1',
       page: 1,
     })
 
-    expect(questionComments.length).toEqual(2)
+    expect(result.value?.questionComments.length).toEqual(2)
   })
 
   test('it should be able to fetch paginated questions comments', async () => {
@@ -39,11 +39,11 @@ describe('Fetch Question Comments', () => {
       )
     })
 
-    const {questionComments} = await sut.execute({
+    const result = await sut.execute({
       questionId: 'question-1',
       page: 1,
     })
 
-    expect(questionComments).toHaveLength(20)
+    expect(result.value?.questionComments).toHaveLength(20)
   })
 })

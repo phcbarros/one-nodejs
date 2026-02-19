@@ -23,11 +23,11 @@ export class DeleteQuestionUseCase {
     const question = await this.questionsRepository.findById(questionId)
 
     if (!question) {
-      left(new ResourceNotFoundError())
+      return left(new ResourceNotFoundError())
     }
 
     if (question?.authorId.toString() !== authorId) {
-      left(new NotAllowedError())
+      return left(new NotAllowedError())
     }
 
     await this.questionsRepository.delete(question!)
