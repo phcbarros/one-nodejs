@@ -50,6 +50,42 @@ Design de Software é diferente de Arquitetura de Software
 - Facilidade de mudar de frameworks sem precisar alterar o código das camadas
 - Isolado da camada de infraestrutura
 
+## Conceitos
+
+### Aggregate
+
+- um entidade que precisa de outra entidade para existir
+- um conjunto de entidades que são manipuladas ao mesmo tempo e juntas compõe algo maior (agregado)
+- se uma ou mais entidades são trabalhadas juntas nas criação, edição ou remoção então isso significa que são um agregado
+- o agregado pode fazer coisas que as entidades mais simples não podem fazer
+
+**Ex:**
+Order -> OrderItems[] (não faz sentido os itens do pedido existir se o pedido não existe)
+Order -> OrderShipping
+
+Question - QuestionComment (primeiro a pergunta precisa existir para então os comentários serem adicionados)
+
+### WatchedList
+
+- Um padrão que permite ter informações sobre itens contidos em uma lista (faz mais sentido na edição)
+
+Question - Attachment[]
+
+**Criação**
+
+- Título
+- Conteúdo
+- Anexos (3)
+
+**Edição**
+
+- Título (update no campo no banco de dados)
+- Conteúdo
+
+- Adicionar um novo anexo (create)
+- Remover o segundo anexo que tinha sido criado previamente (delete)
+- Editar um anexo existente (update)
+
 ## Criando o projeto
 
 ```shell

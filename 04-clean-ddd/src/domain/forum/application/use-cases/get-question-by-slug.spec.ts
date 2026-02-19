@@ -13,7 +13,6 @@ describe('Get Question By Slug', () => {
   })
 
   test('it should be able to fetch an question by slug', async () => {
-    // usou a entidade Question para criar a pergunta e depois inseriu direto no banco em memory
     const newQuestion = makeQuestion({
       slug: Slug.create('example-question'),
     })
@@ -24,7 +23,13 @@ describe('Get Question By Slug', () => {
       slug: 'example-question',
     })
 
-    expect(result.value?.question.id).toEqual(newQuestion.id)
-    expect(result.value?.question.slug.value).toBe('example-question')
+    // expect(result.value?.question.id).toEqual(newQuestion.id)
+    // expect(result.value?.question.slug.value).toBe('example-question')
+    expect(result.value).toMatchObject({
+      question: expect.objectContaining({
+        title: newQuestion.title,
+        slug: newQuestion.slug,
+      }),
+    })
   })
 })
