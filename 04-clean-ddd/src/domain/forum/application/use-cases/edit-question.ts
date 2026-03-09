@@ -26,7 +26,7 @@ type EditQuestionUseCaseResponse = Either<
 export class EditQuestionUseCase {
   constructor(
     private questionsRepository: QuestionsRepository,
-    private questionsAttachmentsRepository: QuestionAttachmentsRepository,
+    private questionAttachmentsRepository: QuestionAttachmentsRepository,
   ) {}
 
   async execute({
@@ -48,7 +48,7 @@ export class EditQuestionUseCase {
 
     // obtém os anexo atuais da pergunta
     const currentQuestionAttachments =
-      await this.questionsAttachmentsRepository.findManyByQuestionId(questionId)
+      await this.questionAttachmentsRepository.findManyByQuestionId(questionId)
 
     // criar uma watched list com os anexos
     const questionAttachmentList = new QuestionAttachmentList(

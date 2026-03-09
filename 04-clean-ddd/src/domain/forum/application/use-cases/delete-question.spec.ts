@@ -46,7 +46,7 @@ describe('Delete Question', () => {
       authorId: 'author-1',
     })
 
-    expect(inMemoryQuestionsRepository.items.length).toBe(0)
+    expect(inMemoryQuestionsRepository.items).toHaveLength(0)
     expect(inMemoryQuestionAttachmentsRepository.items).toHaveLength(0)
   })
 
