@@ -26,6 +26,32 @@ Design de Software é diferente de Arquitetura de Software
 - Entidades
 - Casos de uso
 
+## Subdomínios
+
+- Core: o que dá dinheiro
+- Supporting: Dá suporte para o core funcionar
+- Generic: Você precisa mas não é tão importante
+
+### Exemplos E-commerce
+
+#### Core
+
+- Compra
+- Catálogo
+- Pagamentos
+- Entrega
+- Faturamento
+
+#### Supporting
+
+- Estoque
+
+#### Generic
+
+- Notificação ao cliente
+- Promoções
+- Chat
+
 ## Clean Architecture
 
 - Principal conceito é a proteção entre as camadas e não a forma como isso será representado dentro do código

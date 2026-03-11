@@ -11,5 +11,6 @@ export class Entity<Props> {
   protected constructor(props: Props, id?: UniqueEntityID) {
     this.props = props
     this._id = id ?? new UniqueEntityID()
+    Object.freeze(this) // Garante que o objeto de valor seja imutável.
   }
 }
