@@ -6,7 +6,7 @@ import {Answer} from '../answer'
 export class AnswerCreatedEvent implements DomainEvent {
   ocurredAt: Date
 
-  constructor(private answer: Answer) {
+  constructor(public answer: Answer) {
     this.answer = answer
     this.ocurredAt = new Date()
   }
