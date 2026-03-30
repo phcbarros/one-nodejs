@@ -65,3 +65,27 @@ Um evento de domínio (domain event) é uma notificação assíncrona que indica
 Por exemplo, em um sistema de comércio eletrônico, um evento de domínio pode ser gerado quando uma nova compra é realizada com sucesso. Esse evento pode conter informações como o identificador da compra, o valor total, o endereço de entrega, entre outras informações relevantes para o domínio.
 
 Eventos de domínio são importantes porque permitem que diferentes partes do sistema sejam notificadas e atualizadas quando ocorrem mudanças importantes no domínio. Eles também permitem que o sistema seja projetado de forma mais modular e escalável, pois diferentes partes do sistema podem ser projetadas para reagir a diferentes tipos de eventos, de forma independente.
+
+# Serviços de domínio
+
+## Compreendendo o Conceito
+
+Os serviços de domínio são uma estratégia dentro do Domain-Driven Design para encapsular regras que não se encaixam naturalmente em uma única entidade ou agregado. Em muitas situações, as regras de negócio envolvem múltiplos agregados ou exigem interações que ultrapassam a responsabilidade de objetos isolados, tornando necessário um local específico para centralizar essa lógica. Essa abordagem promove a clareza e a separação de responsabilidades, o que auxilia na manutenção e evolução do sistema.
+
+## Por que Isolar Regras Complexas
+
+Quando uma regra de negócio abrange mais de um agregado, tentar inseri-la em um único objeto pode levar a um design confuso e a um acoplamento indesejado. Ao utilizar serviços de domínio, as regras são encapsuladas em uma classe ou módulo separado, que orquestra a interação entre os diferentes agregados. Isso permite, por exemplo, transformar um carrinho em um pedido sem que o próprio carrinho ou o pedido precisem conhecer os detalhes da operação, reforçando o princípio da responsabilidade única.
+
+## Estratégias e Variações
+
+Uma prática comum é definir métodos que recebem os objetos envolvidos, validam suas condições e invocam os processos necessários para realizar a transformação. Embora a lógica interna possa variar (como as políticas de desconto ou regras específicas de conversão), o uso de um serviço de domínio garante que:
+
+## As validações sejam centralizadas e mantidas consistentes ao longo do sistema.
+
+A orquestração de regras envolvendo múltiplos agregados seja realizada de forma isolada, permitindo maior flexibilidade para mudanças futuras.
+A comunicação entre diferentes módulos do sistema permaneça clara e desacoplada.
+Em implementações, pode ser interessante criar métodos internos, como um createOrderFromCart, que encapsula chamadas a outros métodos responsáveis por validar o estado dos objetos e aplicar regras externas, utilizando para isso, por exemplo, um gateway de precificação para buscar dados de serviços externos. Essa abordagem não apenas melhora a legibilidade do código, como também permite que cada parte seja testada de forma isolada, aumentando a confiabilidade do software.
+
+## Benefícios na Prática
+
+Ao optar por utilizar serviços de domínio, a equipe de desenvolvimento passa a ter um ponto central para alterações em regras de negócio ligadas a processos que envolvem múltiplos agregados. Além disso, essa prática permite que a evolução do sistema seja mais controlada: quando uma nova regra ou variação for identificada, o serviço pode ser atualizado sem que alterações sejam necessárias nos objetos que representam as entidades do domínio. Essa modularidade é especialmente útil em sistemas complexos ou em crescimento, onde a clareza e a organização do código são fundamentais.

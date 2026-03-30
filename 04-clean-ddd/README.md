@@ -129,3 +129,16 @@ npm run lint
 
 npm run lint:fix
 ```
+
+## Adicionar evento
+
+1. Criar evento na pasta events
+2. Adicionar disparo do evento no agregado, caso não seja, transforme a entidade em agregado
+3. Adicionar no repositório o dispacher do evento
+
+```ts
+DomainEvents.dispatchEventsForAggregate(questionComment.id)
+```
+
+4. Criar subscriber
+5. Criar teste para o subscriber
