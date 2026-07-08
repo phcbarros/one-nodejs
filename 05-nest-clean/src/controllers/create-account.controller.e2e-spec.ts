@@ -8,7 +8,7 @@ import {schemaId} from '@/test/setup-e2e'
 import request from 'supertest'
 describe('Create account (E2E)', () => {
   let app: INestApplication
-  let prisma: any
+  let prisma: PrismaService
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
