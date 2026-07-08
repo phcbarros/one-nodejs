@@ -1,4 +1,4 @@
-import {Injectable, OnModuleDestroy, OnModuleInit} from '@nestjs/common'
+import {Inject, Injectable, OnModuleDestroy, OnModuleInit} from '@nestjs/common'
 import {ConfigService} from '@nestjs/config'
 import {PrismaPg} from '@prisma/adapter-pg'
 import {PrismaClient} from '@/generated/prisma/client'
@@ -8,8 +8,9 @@ export class PrismaService
   extends PrismaClient
   implements OnModuleInit, OnModuleDestroy
 {
-  constructor(private configService: ConfigService) {
-    const databaseUrlRaw = configService.get<string>('DATABASE_URL')
+  constructor(private config: ConfigService) {
+    const databaseUrlRaw = config.get('DATABASE_URL', {infer: true})
+    const databaseSchema = config.get('DATABASE_SCHEMA', {infer: true})
 
     if (!databaseUrlRaw) {
       throw new Error(
@@ -20,11 +21,10 @@ export class PrismaService
     // Fix caused by prisma 7.2.0 update
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const databaseURL = new URL(databaseUrlRaw)
-    const schema = databaseURL.searchParams.get('schema')
 
     const adapter = new PrismaPg(
       {connectionString: databaseURL.toString()},
-      {schema: schema || 'public'},
+      {schema: databaseSchema || 'public'},
     )
 
     super({
