@@ -57,6 +57,7 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # prisma
 prisma/generated/prisma
+src/generated/prisma
 
 # Docker
 data
