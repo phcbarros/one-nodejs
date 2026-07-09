@@ -1,4 +1,4 @@
-import {Inject, Injectable, OnModuleDestroy, OnModuleInit} from '@nestjs/common'
+import {Injectable, OnModuleDestroy, OnModuleInit} from '@nestjs/common'
 import {ConfigService} from '@nestjs/config'
 import {PrismaPg} from '@prisma/adapter-pg'
 import {PrismaClient} from '@/generated/prisma/client'
@@ -32,9 +32,11 @@ export class PrismaService
       log: ['warn', 'error'],
     })
   }
+
   onModuleInit() {
     return this.$connect()
   }
+
   onModuleDestroy() {
     return this.$disconnect()
   }

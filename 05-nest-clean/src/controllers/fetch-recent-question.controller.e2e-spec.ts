@@ -66,7 +66,7 @@ describe('Fetch recent question (E2E)', () => {
 
     const response = await request(app.getHttpServer())
       .get('/questions')
-      //.set('Authorization', `Bearer ${access_token}}`)
+      // .set('Authorization', `Bearer ${access_token}}`)
       .auth(access_token, {type: 'bearer'})
       .send()
 

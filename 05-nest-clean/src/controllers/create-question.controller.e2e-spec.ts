@@ -49,7 +49,7 @@ describe('Create question (E2E)', () => {
 
     const response = await request(app.getHttpServer())
       .post('/questions')
-      //.set('Authorization', `Bearer ${access_token}}`)
+      // .set('Authorization', `Bearer ${access_token}}`)
       .auth(access_token, {type: 'bearer'})
       .send({
         title: 'Nova pergunta',
