@@ -1,0 +1,1 @@
+export const INJECTION_ENCRYPTER = Symbol('ENCRYPTER')
