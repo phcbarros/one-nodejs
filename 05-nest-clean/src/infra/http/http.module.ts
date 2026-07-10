@@ -1,4 +1,3 @@
-import {PrismaService} from '@/infra/database/prisma/prisma.service'
 import {Module} from '@nestjs/common'
 import {AuthenticateController} from './controllers/authenticate.controller'
 import {CreateAccountController} from './controllers/create-account.controller'
@@ -7,9 +6,10 @@ import {FetchRecentQuestionsController} from './controllers/fetch-recent-questio
 import {DatabaseModule} from '../database/database.module'
 import {NestCreateQuestionUseCase} from '../use-case/nest-create-question-use-case'
 import {FetchRecentQuestionsUseCase} from '@/domain/forum/application/use-cases/fetch-recent-questions'
+import {CryptographyModule} from '../cryptography/cryptography.module'
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, CryptographyModule],
   controllers: [
     CreateAccountController,
     AuthenticateController,
