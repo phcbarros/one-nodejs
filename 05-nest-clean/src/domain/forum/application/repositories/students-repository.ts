@@ -1,6 +1,6 @@
 import {Student} from '@/domain/forum/enterprise/entities/student'
 
-export const STUDENT_REPOSITORY = Symbol('STUDENT_REPOSITORY')
+export const STUDENTS_REPOSITORY = Symbol('STUDENTS_REPOSITORY')
 
 export interface StudentsRepository {
   findByEmail(email: string): Promise<Student | null>
