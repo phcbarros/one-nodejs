@@ -8,6 +8,7 @@ import {FetchRecentQuestionsController} from './controllers/fetch-recent-questio
 import {NestCreateQuestionUseCase} from '../use-case/nest-create-question-use-case'
 import {AuthenticateStudentUseCase} from '@/domain/forum/application/use-cases/authenticate-student'
 import {FetchRecentQuestionsUseCase} from '@/domain/forum/application/use-cases/fetch-recent-questions'
+import {RegisterStudentUseCase} from '@/domain/forum/application/use-cases/register-student'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -21,6 +22,7 @@ import {FetchRecentQuestionsUseCase} from '@/domain/forum/application/use-cases/
     NestCreateQuestionUseCase,
     FetchRecentQuestionsUseCase,
     AuthenticateStudentUseCase,
+    RegisterStudentUseCase,
   ],
 })
 export class HttpModuleModule {}
