@@ -8,8 +8,10 @@ import {PrismaQuestionsRepository} from './prisma/repositories/prisma-questions.
 import {QuestionsRepository} from '@/domain/forum/application/repositories/questions-repository'
 import {STUDENTS_REPOSITORY} from '@/domain/forum/application/repositories/students-repository'
 import {PrismaStudentsRepository} from './prisma/repositories/prisma-students.repository'
+import {EnvModule} from '../env/env.module'
 
 @Module({
+  imports: [EnvModule],
   providers: [
     PrismaService,
     PrismaAnswerAttachmentsRepository,
