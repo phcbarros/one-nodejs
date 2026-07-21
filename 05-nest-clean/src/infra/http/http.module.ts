@@ -25,4 +25,4 @@ import {RegisterStudentUseCase} from '@/domain/forum/application/use-cases/regis
     RegisterStudentUseCase,
   ],
 })
-export class HttpModuleModule {}
+export class HttpModule {}

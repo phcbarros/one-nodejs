@@ -5,7 +5,7 @@ export interface CommentProps {
   authorId: UniqueEntityID
   content: string
   createdAt: Date
-  updatedAt?: Date
+  updatedAt?: Date | null
 }
 
 // ninguém cria uma instância dessa classe
