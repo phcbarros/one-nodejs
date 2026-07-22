@@ -9,6 +9,8 @@ import {NestCreateQuestionUseCase} from '../use-case/nest-create-question-use-ca
 import {AuthenticateStudentUseCase} from '@/domain/forum/application/use-cases/authenticate-student'
 import {FetchRecentQuestionsUseCase} from '@/domain/forum/application/use-cases/fetch-recent-questions'
 import {RegisterStudentUseCase} from '@/domain/forum/application/use-cases/register-student'
+import {GetQuestionBySlugController} from './controllers/get-question-by-slug.controller'
+import {GetQuestionBySlugUseCase} from '@/domain/forum/application/use-cases/get-question-by-slug'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -17,12 +19,14 @@ import {RegisterStudentUseCase} from '@/domain/forum/application/use-cases/regis
     AuthenticateController,
     CreateQuestionController,
     FetchRecentQuestionsController,
+    GetQuestionBySlugController,
   ],
   providers: [
     NestCreateQuestionUseCase,
     FetchRecentQuestionsUseCase,
     AuthenticateStudentUseCase,
     RegisterStudentUseCase,
+    GetQuestionBySlugUseCase,
   ],
 })
 export class HttpModule {}
