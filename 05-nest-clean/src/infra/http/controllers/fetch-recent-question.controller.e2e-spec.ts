@@ -6,16 +6,20 @@ import {Test} from '@nestjs/testing'
 import {schemaId} from '@/test/setup-e2e'
 import request from 'supertest'
 import {JwtService} from '@nestjs/jwt'
+import {DatabaseModule} from '@/infra/database/database.module'
+import {StudentFactory} from '@/test/factories/make-student'
 
 describe('Fetch recent question (E2E)', () => {
   let app: INestApplication
   let prisma: PrismaService
   let jwt: JwtService
+  let studentFactory: StudentFactory
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [
         AppModule,
+        DatabaseModule,
         ConfigModule.forRoot({
           load: [
             () => ({
@@ -24,42 +28,35 @@ describe('Fetch recent question (E2E)', () => {
           ],
         }),
       ],
+      providers: [StudentFactory],
     }).compile()
 
     app = moduleRef.createNestApplication()
     prisma = moduleRef.get(PrismaService)
     jwt = moduleRef.get(JwtService)
+    studentFactory = moduleRef.get(StudentFactory)
 
     await app.init()
   })
 
   test('[GET] /questions', async () => {
-    const email = 'john.doe@example.com'
-    const password = '123456'
+    const user = await studentFactory.makePrismaStudent()
 
-    const user = await prisma.user.create({
-      data: {
-        name: 'John Doe',
-        email,
-        password,
-      },
-    })
+    const access_token = jwt.sign({sub: user.id.toString()})
 
-    const access_token = jwt.sign({sub: user.id})
-
-    const question = await prisma.question.createMany({
+    await prisma.question.createMany({
       data: [
         {
           title: 'Nova pergunta 1',
           content: 'Conteúdo nova pergunta',
           slug: 'nova-pergunta-1',
-          authorId: user.id,
+          authorId: user.id.toString(),
         },
         {
           title: 'Nova pergunta 2',
           content: 'Conteúdo nova pergunta 2',
           slug: 'nova-pergunta-2',
-          authorId: user.id,
+          authorId: user.id.toString(),
         },
       ],
     })
